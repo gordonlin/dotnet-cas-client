@@ -67,7 +67,7 @@ namespace DotNetCasClient.Validation.TicketValidator
         {
             if (CasAuthentication.ProxyTicketManager != null)
             {
-                CustomParameters.Add("pgtUrl", HttpUtility.UrlEncode(UrlUtil.ConstructProxyCallbackUrl()));
+                CustomParameters.Add("pgtUrl", UrlUtil.ConstructProxyCallbackUrl());
             }
         }
 

@@ -53,7 +53,7 @@ namespace DotNetCasClient.Utils
             CasAuthentication.Initialize();
 
             EnhancedUriBuilder ub = new EnhancedUriBuilder(CasAuthentication.FormsLoginUrl);
-            ub.QueryItems.Set(CasAuthentication.TicketValidator.ServiceParameterName, HttpUtility.UrlEncode(ConstructServiceUrl(gateway)));
+            ub.QueryItems.Set(CasAuthentication.TicketValidator.ServiceParameterName, ConstructServiceUrl(gateway));
 
             if (renew)
             {
@@ -138,8 +138,8 @@ namespace DotNetCasClient.Utils
             CasAuthentication.Initialize();
 
             EnhancedUriBuilder ub = new EnhancedUriBuilder(EnhancedUriBuilder.Combine(CasAuthentication.CasServerUrlPrefix, CasAuthentication.TicketValidator.UrlSuffix));
-            ub.QueryItems.Add(CasAuthentication.TicketValidator.ServiceParameterName, HttpUtility.UrlEncode(ConstructServiceUrl(gateway)));
-            ub.QueryItems.Add(CasAuthentication.TicketValidator.ArtifactParameterName, HttpUtility.UrlEncode(serviceTicket));
+            ub.QueryItems.Add(CasAuthentication.TicketValidator.ServiceParameterName, ConstructServiceUrl(gateway));
+            ub.QueryItems.Add(CasAuthentication.TicketValidator.ArtifactParameterName, serviceTicket);
 
             if (renew)
             {
@@ -262,7 +262,7 @@ namespace DotNetCasClient.Utils
             // TODO: Make "proxy" configurable.
             EnhancedUriBuilder ub = new EnhancedUriBuilder(EnhancedUriBuilder.Combine(CasAuthentication.CasServerUrlPrefix, "proxy"));
             ub.QueryItems.Add("pgt", proxyGrantingTicketId);
-            ub.QueryItems.Add("targetService", HttpUtility.UrlEncode(targetService));
+            ub.QueryItems.Add("targetService", targetService);
 
             return ub.Uri.AbsoluteUri;
         }
@@ -318,7 +318,7 @@ namespace DotNetCasClient.Utils
 
             // TODO: Make "logout" configurable
             EnhancedUriBuilder ub = new EnhancedUriBuilder(EnhancedUriBuilder.Combine(CasAuthentication.CasServerUrlPrefix, "logout"));
-            ub.QueryItems.Set(CasAuthentication.TicketValidator.ServiceParameterName, HttpUtility.UrlEncode(ConstructServiceUrl(false)));
+            ub.QueryItems.Set(CasAuthentication.TicketValidator.ServiceParameterName, ConstructServiceUrl(false));
 
             return ub.Uri.AbsoluteUri;
         }

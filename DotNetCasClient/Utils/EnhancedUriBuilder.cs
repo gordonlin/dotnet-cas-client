@@ -322,7 +322,7 @@ namespace DotNetCasClient.Utils
                 {
                     foreach (string value in values)
                     {
-                        query += (key + "=" + value + "&");
+                        query += (key + "=" + HttpUtility.UrlEncode(value) + "&");
                     }
                 }
             }
